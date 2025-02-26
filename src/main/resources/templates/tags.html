@@ -20,26 +20,9 @@
         <p th:text="${viewAttraction.description}"></p>
 
 
-        <h2>Delete [[${viewAttraction.name}]]</h2>
-        <form th:action="@{/attractions/delete/{name}(name=${viewAttraction.name})}" method="post">
-            <button type="submit" class="btn-submit">Delete [[${viewAttraction.name}]]</button>
-        </form>
-
-        <h2>Update [[${viewAttraction.name}]]</h2>
-        <form th:action="@{/attractions/update/{name}(name=${viewAttraction.name})}" method="post">
-            <input class= "inputBar" type="text" name="name" placeholder="Enter new name...">
-            <input class= "inputBar" type="text" name="description" placeholder="Enter new description...">
-            <button class="btn-submit" type="submit">Update [[${viewAttraction.name}]]</button>
-        </form>
-        <div th:if="${message}">
-            <div th:if="${updated}">
-                <p th:text="${message}" style="color: green;"></p> <!-- Success message -->
-            </div>
-            <div th:if="${!updated}">
-                <p th:text="${message}" style="color: red;"></p> <!-- Error message -->
-            </div>
+        <div class="tags" th:each="tag : ${viewAttraction.getTags}">
+            <span class="tag" th:text="${tag}"></span>
         </div>
-
 
 
         <div class="back">

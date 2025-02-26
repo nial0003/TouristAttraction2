@@ -20,15 +20,15 @@
 <div class="start" id="start">
     <!-- navigation-bar that is fixed to the screen -->
     <div>
-    <nav class="navbar">
-        <div class="logo">Discover Denmark</div>
-        <ul class="nav-links">
-            <li><a href="#start">Home</a></li>
-            <li><a href="#attractions">Attractions</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+        <nav class="navbar">
+            <div class="logo">Discover Denmark</div>
+            <ul class="nav-links">
+                <li><a href="#start">Home</a></li>
+                <li><a href="#attractions">Attractions</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </div>
 </div>
 
@@ -54,76 +54,27 @@
         <!-- displays the attractions based on the url -->
         <div class="seeAttractions">
             <div class="attraction-item" th:each="attraction : ${attractions}">
-                <a class="link" th:href="@{/attractions/{name}/tags}" th:text="${attraction.name}"></a>
+                <a class="link" th:text="${attraction.name}"></a>
                 <div class="inline-buttons">
-                    <button class="btn-submit-tags" type="submit">Tags</button>
-                    <button class="btn-submit-update" type="submit">Update</button>
-                    <button class="btn-submit-delete" type="submit">Delete</button>
-                </div>
-            </div>
+                    <form th:action="@{/attractions/{name}/tags(name=${attraction.name})}" method="get">
+                        <button class="btn-submit-tags" type="submit">Tags</button>
+                    </form>
+                    <form th:action="@{/attractions/update}" method="get">
+                        <button class="btn-submit-update" type="submit">Update</button>
+                    </form>
 
-            <div class="attraction-item">
-                <a class="link">Kea</a>
-                <div class="inline-buttons">
-                    <button class="btn-submit-tags" type="submit">Tags</button>
-                    <button class="btn-submit-update" type="submit">Update</button>
-                    <button class="btn-submit-delete" type="submit">Delete</button>
-                </div>
-            </div>
-            <div class="attraction-item">
-                <a class="link">Legoland</a>
-                <div class="inline-buttons">
-                    <button class="btn-submit-tags" type="submit">Tags</button>
-                    <button class="btn-submit-update" type="submit">Update</button>
-                    <button class="btn-submit-delete" type="submit">Delete</button>
-                </div>
-            </div>
-            <div class="attraction-item">
-                <a class="link">Frihedsgudinden</a>
-                <div class="inline-buttons">
-                    <button class="btn-submit-tags" type="submit">Tags</button>
-                    <button class="btn-submit-update" type="submit">Update</button>
-                    <button class="btn-submit-delete" type="submit">Delete</button>
-                </div>
-            </div>
-            <div class="attraction-item">
-                <a class="link">Randers regnskov</a>  <div class="inline-buttons">
-                <button class="btn-submit-tags" type="submit">Tags</button>
-                <button class="btn-submit-update" type="submit">Update</button>
-                <button class="btn-submit-delete" type="submit">Delete</button>
-            </div>
-            </div>
-            <div class="attraction-item">
-                <a class="link">Kgs nytorv</a>
-                <div class="inline-buttons">
-                    <button class="btn-submit-tags" type="submit">Tags</button>
-                    <button class="btn-submit-update" type="submit">Update</button>
-                    <button class="btn-submit-delete" type="submit">Delete</button>
-                </div>
-            </div>
-            <div class="attraction-item">
-                <a class="link">Faxeladeplads</a>
-                <div class="inline-buttons">
-                    <button class="btn-submit-tags" type="submit">Tags</button>
-                    <button class="btn-submit-update" type="submit">Update</button>
-                    <button class="btn-submit-delete" type="submit">Delete</button>
-                </div>
-            </div>
-            <div class="attraction-item">
-                <a class="link">Lalandia</a>
-                <div class="inline-buttons">
-                    <button class="btn-submit-tags" type="submit">Tags</button>
-                    <button class="btn-submit-update" type="submit">Update</button>
-                    <button class="btn-submit-delete" type="submit">Delete</button>
+                    <form th:action="@{/attractions/delete/{name}/(name=${attraction.name})}" method="post">
+                        <button class="btn-submit-delete" type="submit">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
+
 <div class="about" id="about">
-    <div class=about-content">
+    <div class="about-content">
         <h1 class="headline">About Discover Denmark</h1>
 
         <p>Discover Denmark is a simple guide to cool places in Denmark.

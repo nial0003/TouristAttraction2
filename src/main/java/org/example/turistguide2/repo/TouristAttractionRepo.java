@@ -4,6 +4,7 @@ import org.example.turistguide2.model.Tags;
 import org.example.turistguide2.model.TouristAttraction;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class TouristAttractionRepo {
@@ -25,6 +26,19 @@ public class TouristAttractionRepo {
 
     public List<TouristAttraction> getTouristAttractionList(){
         return touristAttractionList;
+    }
+
+    public List<TouristAttraction> getFirstAttractions() {
+        List<TouristAttraction> firstAttractions = new ArrayList<>();
+
+        // Ensure we don't exceed the actual list size
+        int limit = Math.min(8, touristAttractionList.size());
+
+        for (int i = 0; i < limit; i++) {
+            firstAttractions.add(touristAttractionList.get(i));
+        }
+
+        return firstAttractions;
     }
 
     public void addTouristAttractionToList(TouristAttraction touristAttraction){

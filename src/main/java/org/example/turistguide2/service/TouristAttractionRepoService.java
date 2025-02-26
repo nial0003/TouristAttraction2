@@ -19,6 +19,10 @@ public class TouristAttractionRepoService {
         return touristAttractionRepo.getTouristAttractionList();
     }
 
+    public List<TouristAttraction> getFirstAttractions () {
+        return touristAttractionRepo.getFirstAttractions();
+    }
+
     public void addTouristAttractionToList(TouristAttraction touristAttraction) {
         touristAttractionRepo.addTouristAttractionToList(touristAttraction);
     }

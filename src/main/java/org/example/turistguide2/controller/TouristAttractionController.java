@@ -25,12 +25,33 @@ public class TouristAttractionController {
         this.touristAttractionRepoService = touristAttractionRepoService;
     }
 
-    @GetMapping("/list")
-    public String getAttraction() {
+    @GetMapping
+    public String getAttractions(@RequestParam(value = "search", required = false) String search, Model model) {
+        List<TouristAttraction> filteredAttractions = new ArrayList<>(touristAttractionRepoService.getFirstAttractions()); /* by standard it's the first
+        10 attractions that will be shown on the html side. */
+
+        if (search != null && !search.isEmpty()) { // if the search bar is not empty the html file will search for what contains search-url-attribute
+            filteredAttractions.clear();
+            for (TouristAttraction attraction : touristAttractionRepoService.getTouristAttractionList()) {
+                if (attraction.getName().toLowerCase().contains(search.toLowerCase())) {
+                    filteredAttractions.add(attraction);
+                }
+            }
+        }
+        model.addAttribute("attractions", filteredAttractions);
         return "attractionList";
     }
 
-    @GetMapping("attractions/{name}/edit")
+    @GetMapping("/{name}/tags")
+    public String getTags(@PathVariable String name, Model model) {
+
+        TouristAttraction touristAttraction = touristAttractionRepoService.findAttractionByName(name);
+
+        model.addAttribute("viewAttraction", touristAttraction);
+        return "tags";
+    }
+
+    @GetMapping("/{name}/edit")
     public String editAttraction(@PathVariable("name") String name, Model model) {
         TouristAttraction touristAttraction = touristAttractionRepoService.findAttractionByName(name);
 
@@ -43,14 +64,14 @@ public class TouristAttractionController {
         return "";
     }
 
-    @PostMapping("attractions/update")
+    @PostMapping("/update")
     public String updateAttraction(@ModelAttribute("attraction") TouristAttraction touristAttraction,
                                    @RequestParam("tags") List<Tags> tags) {
 
         touristAttraction.setTags(tags);
         touristAttractionRepoService.updateTouristAttraction(touristAttraction);
 
-        return "";
+        return "updateAttraction";
     }
 
     @GetMapping("/add")

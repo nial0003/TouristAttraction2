@@ -104,8 +104,14 @@ html::-webkit-scrollbar {
     align-items: center;
     justify-content: center;
     text-align: center;
+
 }
 
+.link {
+    text-decoration: none;
+    font-family: "Darumadrop One", sans-serif;
+    color: floralwhite;
+}
 .content {
     display: flex;
     flex-direction: column;
@@ -243,7 +249,40 @@ html::-webkit-scrollbar {
     padding-left: 0; /* Remove left padding */
 }
 
+/* tags page ------------------------------------------------------------------------- */
+.content2 {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("https://i.ibb.co/S7ynj9hb/687083-1920x1080-desktop-full-hd-amalienborg-background-image.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+     text-align: center;
+}
+.content2 h1 {
+    margin-bottom: 5vw;
+}
+.content2 .back {
+    margin-top: 18vw;
+}
+.back a{
+    font-family: "Darumadrop One", sans-serif;
+    color: floralwhite;
+    font-size: 1vw;
+}
 
+.tag {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 5px;
+    border: 2px solid #007bff;
+    background-color: #f0f8ff;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #007bff;
+}
 
 /* general styling  ------------------------------------------------------------------------- */
 h1 {
