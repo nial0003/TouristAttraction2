@@ -44,8 +44,8 @@
                 <div class="checkbox-container">
                     <label id="tagsLabel">Tags:</label>
                     <div th:each="tag : ${tags}" class="checkbox-item">
-                        <input type="checkbox" name="tags" th:value="${tag}">
-                        <label th:text="${tag.toLowerCaseWithSpace()}"></label>
+                        <input type="checkbox" name="selectedTags" th:value="${tag}">
+                        <label th:text="${tag.toLowerCase().replace('_', ' ')}"></label>
                     </div>
                 </div>
                 <button type="submit">Save Attraction</button>

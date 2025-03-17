@@ -5,21 +5,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
-class TouristAttractionRepoTest {
+class TouristAttractionRepositoryTest {
 
-    private TouristAttractionRepo repo;
+    private TouristAttractionRepository repo;
 
     @BeforeEach
     void setUp() {
-        repo = new TouristAttractionRepo();
-        repo.addTouristAttractionToList(new TouristAttraction("Tivoli", "Forlystelsespark", "København", null));
-        repo.addTouristAttractionToList(new TouristAttraction("Legoland", "Forlystelsespark", "Billund", null));
+        repo = mock(TouristAttractionRepository.class);
+        repo.createAttraction(new TouristAttraction("Tivoli", "Forlystelsespark", "København", null));
+        repo.createAttraction(new TouristAttraction("Legoland", "Forlystelsespark", "Billund", null));
     }
 
     @Test
     void deleteTouristAttractionFromList_Success() {
-        boolean result = repo.deleteTouristAttractionFromList("Tivoli");
+        boolean result = repo.deleteAttraction(repo.findAttractionByName("tivoli").getId());
 
         assertTrue(result, "Tivoli burde være slettet");
         assertNull(repo.findAttractionByName("Tivoli"), "Tivoli burde ikke findes længere");
@@ -27,7 +28,7 @@ class TouristAttractionRepoTest {
 
     @Test
     void deleteTouristAttractionFromList_NotFound() {
-        boolean result = repo.deleteTouristAttractionFromList("FalskAttraktion");
+        boolean result = repo.deleteAttraction(10032423);
 
         assertFalse(result, "FalskAttraktion burde ikke kunne slettes");
     }

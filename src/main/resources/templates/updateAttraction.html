@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>updateAttraction</title>
+    <title>Update Attraction</title>
 
     <!-- stylesheets -->
     <link th:href="@{/main.css}" rel="stylesheet">
@@ -12,12 +12,9 @@
 
     <!-- font-styles -->
     <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
-    <style>
-
-
-    </style>
 </head>
 <body>
+
 <!-- navigation-bar that is fixed to the screen -->
 <div>
     <nav class="navbar">
@@ -33,29 +30,31 @@
 
 <div class="attractions">
     <div class="attraction-item">
-        <div class="title" th:text="${attraction.name}"></div>
+        <h1 th:text="${attraction.name}"></h1>
 
         <form action="/attractions/update" method="post">
+            <!-- Hidden field for attraction name -->
             <input type="hidden" th:name="name" th:value="${attraction.name}">
 
+            <!-- Description field -->
             <div class="description">
                 <textarea th:name="description" placeholder="Enter new description for the attraction..."
                           th:text="${attraction.description}"></textarea>
             </div>
 
+            <!-- Tags Checkbox Selection -->
             <div class="checkbox-container">
-                <div th:each="tag : ${tags}" class="checkbox-item">
-                    <label th:for="${tag}" th:text="${tag.toLowerCaseWithSpace}"></label>
+                <label id="tagsLabel">Tags:</label>
+                <div th:each="tag : ${availableTags}" class="checkbox-item">
                     <input type="checkbox" th:id="${tag}" th:name="selectedTags" th:value="${tag}"
-                           th:checked="${attraction.tags != null and attraction.tags.contains(tags)}">
+                           th:checked="${attractionTags != null and #lists.contains(attractionTags, tag)}">
+                    <label th:for="${tag}" th:text="${tag.toLowerCase().replace('_', ' ')}"></label>
                 </div>
             </div>
-
-            <button class="btn-submit" type="submit">submit</button>
-
+            <button class="btn-submit" type="submit">Update Attraction</button>
         </form>
-
     </div>
 </div>
+
 </body>
 </html>

@@ -21,7 +21,7 @@
 
 
         <div class="tags" th:each="tag : ${viewAttraction.getTags}">
-            <span class="tag" th:text="${tag}"></span>
+            <span class="tag" th:text="${tag.getTagName}"></span>
         </div>
 
 

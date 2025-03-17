@@ -1,7 +1,6 @@
 package org.example.turistguide2.controller;
 
 import org.example.turistguide2.model.TouristAttraction;
-import org.example.turistguide2.service.TouristAttractionRepoService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 @WebMvcTest(TouristAttractionControllerTest.class)
 class TouristAttractionControllerTest {
 
