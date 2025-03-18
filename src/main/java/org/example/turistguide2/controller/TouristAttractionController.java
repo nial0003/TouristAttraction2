@@ -50,7 +50,7 @@ public class TouristAttractionController {
         TouristAttraction touristAttraction = touristAttractionService.findAttractionByName(name);
 
         model.addAttribute("viewAttraction", touristAttraction);
-        return "tags";
+        return "tags.html";
     }
 
     @GetMapping("/{name}/edit")
@@ -111,8 +111,7 @@ public class TouristAttractionController {
     @GetMapping("/add")
     public String addAttraction(Model model) {
         TouristAttraction touristAttraction = new TouristAttraction();
-        List<String> tagList = new ArrayList<>();
-        tagList.addAll(touristAttractionService.getAvailableTags().keySet());
+        List<String> tagList = new ArrayList<>(touristAttractionService.getAvailableTags().keySet());
 
         model.addAttribute("tags", tagList);
         model.addAttribute("touristAttraction", touristAttraction);
