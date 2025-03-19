@@ -1,5 +1,6 @@
 package org.example.turistguide2.repo;
 
+import jakarta.annotation.PostConstruct;
 import org.example.turistguide2.model.Tag;
 import org.example.turistguide2.model.TouristAttraction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,12 @@ public class TouristAttractionRepository {
         this.url = url;
         this.username = username;
         this.password = password;
-        loadAvailableTags(); //
+    }
+
+    @PostConstruct
+    public void init()
+    {
+        loadAvailableTags();
     }
 
     // get all tags from database

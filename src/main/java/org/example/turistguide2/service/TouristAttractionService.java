@@ -39,11 +39,13 @@ public class TouristAttractionService {
         }
     }
 
-    public void deleteAttraction(int id) {
-        touristAttractionRepository.deleteAttraction(id);
+    public boolean deleteAttraction(int id)
+    {
+        return touristAttractionRepository.deleteAttraction(id);
     }
 
-    public TouristAttraction findAttractionByName(String name) {
+    public TouristAttraction findAttractionByName(String name)
+    {
         return touristAttractionRepository.findAttractionByName(name);
     }
 
